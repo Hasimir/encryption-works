@@ -1,0 +1,2386 @@
+<!-- Converted by db4-upgrade version 1.0 -->
+<article xmlns="http://docbook.org/ns/docbook" version="5.0">
+  <info><title/>
+    
+  </info>
+<section xml:id="encryption-works"><info><title>Encryption Works</title></info>
+  
+  <section xml:id="a-guide-to-protecting-your-privacy-for-journalists-sources-and-everyone-else"><info><title>A Guide to Protecting Your Privacy for Journalists, Sources,
+    and Everyone Else</title></info>
+    
+    <para>
+      <emphasis>Dedicated to cypherpunks, and to whistleblowers past and
+      future.</emphasis>
+    </para>
+    <para>
+      A publication of <link xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="https://freedom.press/">Freedom of
+      the Press Foundation</link>. Original version written by Micah
+      Lee and published July 2013. Updated version written by Tommy
+      Collison and published September 2015. Licensed as
+      <link xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="https://creativecommons.org/licenses/by/3.0/">Creative
+      Commons Attribution 3.0 Unported</link>.
+    </para>
+    <para>
+      If you’re interested in contributing to Encryption Works, or have
+      ideas for what this guide should cover, please check out the
+      project on
+      <link xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="https://github.com/freedomofpress/encryption-works/blob/master/CONTRIBUTING.md">GitHub</link>.
+    </para>
+    <blockquote>
+      <para>
+        Encryption works. Properly implemented strong crypto systems are
+        one of the few things that you can rely on. Unfortunately,
+        endpoint security is so terrifically weak that NSA can
+        frequently find ways around it.
+      </para>
+      <para>
+        — Edward Snowden, answering questions live on the
+        <link xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="http://www.guardian.co.uk/world/2013/jun/17/edward-snowden-nsa-files-whistleblower">Guardian’s
+        website</link>.
+      </para>
+    </blockquote>
+    <para>
+      Edward Snowden’s NSA revelations have caused a sea change in how
+      the world’s citizens perceive their privacy and security online.
+      News reports have shown the US spy agency and its global partners
+      <link xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="http://www.theguardian.com/world/2013/jun/06/nsa-phone-records-verizon-court-order">have
+      vacuumed up the metadata</link> of all Americans’ phone calls en
+      masse,
+      <link xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="http://www.nytimes.com/2015/08/16/us/politics/att-helped-nsa-spy-on-an-array-of-internet-traffic.html">scanned
+      large portions</link> of the world’s emails,
+      <link xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="https://www.washingtonpost.com/world/national-security/nsa-tracking-cellphone-locations-worldwide-snowden-documents-show/2013/12/04/5492873a-5cf2-11e3-bc56-c6ca94801fac_story.html">tracked
+      the locations</link> of hundreds of millions of people at a time,
+      and recorded the phone calls of entire countries.
+    </para>
+    <para>
+      Journalists or ordinary citizens who have no prior technical
+      skills may feel helpless when it comes to protecting themselves.
+      But just as technology has enabled government surveillance—not
+      just from the US, but also in Russia, China and beyond—it can also
+      provide a shield to safeguard your communications more
+      comprehensively than at any other time in history.
+    </para>
+    <para>
+      As Edward Snowden
+      <link xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="http://www.theguardian.com/world/2013/jun/17/edward-snowden-nsa-files-whistleblower">famously
+      said</link> shortly after he went public with his disclosures in
+      June 2013:
+    </para>
+    <blockquote>
+      <para>
+        Encryption works. Properly implemented strong crypto systems are
+        one of the few things that you can rely on. Unfortunately,
+        endpoint security is so terrifically weak that NSA can
+        frequently find ways around it.
+      </para>
+    </blockquote>
+    <para>
+      The goal of this guide is to explain—in easy-to-understand
+      language the threats that you may face when communicating online,
+      and many of the steps you can take to mitigate those threats using
+      open-source software, tried-and-true digital security techniques,
+      and encryption. In short, encryption works — this guide explains
+      why, and how.
+    </para>
+    <para>
+      It takes a bit of patience, but no matter your skill set, you can
+      learn how to use encryption tools to better protect yourself when
+      emailing, calling, texting, or using your computer even when you
+      are not connected to the internet.
+    </para>
+    <para>
+      It’s important to remember that no security tool will 100% protect
+      you against all forms of surveillance. Criminals, governments, and
+      corporations have many tools at their disposal and vast budgets to
+      constantly develop new techniques for spying. But by implementing
+      the practices in this guide, your private communications will be
+      far better protected and you will be in a better position to
+      maintain control over your private information—whether you are a
+      journalist, a source, or anyone else.
+    </para>
+  </section>
+  <section xml:id="software-you-can-trust"><info><title>Software You Can Trust</title></info>
+    
+    <blockquote>
+      <para>
+        Cypherpunks write code. We know that someone has to write
+        software to defend privacy, and since we can’t get privacy
+        unless we all do, we’re going to write it. We publish our code
+        so that our fellow Cypherpunks may practice and play with it.
+        Our code is free for all to use, worldwide.
+      </para>
+      <para>
+        — Eric Hughes, in his 1993 Cypherpunk Manifesto.
+      </para>
+    </blockquote>
+    <para>
+      One of the most controversial aspects of the Snowden disclosures
+      was the complicity of several software companies, which either
+      handed over data to the NSA or purposely designed their software
+      to allow the NSA access to customer data. Specifically, The
+      Guardian reported on voluntary sharing programs between US
+      companies and US spy agencies.
+    </para>
+    <blockquote>
+      <para>
+        Microsoft has collaborated closely with US intelligence services
+        to allow users’ communications to be intercepted, including
+        helping the National Security Agency to circumvent the company’s
+        own encryption, according to top-secret documents obtained by
+        the Guardian. […] In July last year, nine months after Microsoft
+        bought Skype, the NSA boasted that a new capability had tripled
+        the amount of Skype video calls being collected.
+      </para>
+      <para>
+        <link xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="http://www.theguardian.com/world/2013/jul/11/microsoft-nsa-collaboration-user-data"><quote>Microsoft
+        handed the NSA access to encrypted messages.</quote></link> The
+        Guardian. July 11, 2013.
+      </para>
+    </blockquote>
+    <para>
+      In addition, Bloomberg reported that Microsoft had given
+      information to the NSA about software bugs before they fixed them:
+    </para>
+    <blockquote>
+      <para>
+        Microsoft Corp. (MSFT), the world’s largest software company,
+        provides intelligence agencies with information about bugs in
+        its popular software before it publicly releases a fix,
+        according to two people familiar with the process. That
+        information can be used to protect government computers and to
+        access the computers of terrorists or military foes.
+      </para>
+      <para>
+        <link xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="http://www.bloomberg.com/news/2013-06-14/u-s-agencies-said-to-swap-data-with-thousands-of-firms.html"><quote>U.S.
+        Agencies Said to Swap Data With Thousands of
+        Firms.</quote></link> Bloomberg. June 14, 2013.
+      </para>
+    </blockquote>
+    <para>
+      Not only is this a grossly irresponsible act which places innocent
+      customers at risk of being hacked just so the NSA can spy on their
+      targets, but it also means that the NSA, with enough effort, has
+      been handed the keys to any computer running Windows, MS Office,
+      Skype, or any other piece of Microsoft software, including their
+      SkyDrive cloud storage software. This would obviate any encryption
+      one uses with communications.
+    </para>
+    <para>
+      How could Skype get away with this? The problem lies with
+      proprietary, or closed-source software, which includes much of
+      what’s released by Microsoft, Apple, and Google. Software is said
+      to be either open source or closed-source, depending on whether
+      the underlying code is publicly available for independent
+      observers to review it and make sure that nothing untoward is
+      happening. It’s much more difficult to independently verify that
+      secret backdoors don’t exist in closed-source software at the
+      clandestine demands of the surveillance state.
+    </para>
+    <para>
+      Some pieces of closed-source software are still better than
+      others. While Microsoft has openly collaborated with the US
+      government, Apple took a different tack. Apple CEO Tim Cook
+      recently released an impassioned open letter in which he affirmed
+      Apple’s commitment to privacy. In it, he claimed that no Apple
+      device has a backdoor which would allow a government to access
+      user data, and that its iMessage and FaceTime protocols are fully
+      end-to-end encrypted, so even Apple can’t decrypt the messages if
+      they wanted (or were forced) to.
+    </para>
+    <blockquote>
+      <para>
+        <quote>Finally, I want to be absolutely clear that we have never
+        worked with any government agency from any country to create a
+        backdoor in any of our products or services. We have also never
+        allowed access to our servers. And we never will.</quote>
+      </para>
+      <para>
+        <link xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="https://www.apple.com/privacy/"><quote>A message
+        from Tim Cook about Apple’s commitment to your
+        privacy.</quote></link> Apple.
+      </para>
+    </blockquote>
+    <para>
+      While the rhetoric is promising, and there’s evidence Apple is
+      <link xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="http://www.washingtonpost.com/business/technology/2014/09/25/68c4e08e-4344-11e4-9a15-137aa0153527_story.html">telling</link>
+      the truth, it’s very hard to technically verify this. We’re forced
+      to believe Cook. This is a step in the right direction, but we
+      shouldn’t have to rely on blind trust for our online privacy. Such
+      verification should be built into the software itself.
+    </para>
+    <para>
+      This is why free and open source software is more reliable in this
+      regard. Free and open-source software is developed with open bug
+      trackers, open mailing lists, open governing structures and open
+      source code. It’s much more difficult for such projects to betray
+      their users as Microsoft did.
+    </para>
+    <section xml:id="types-of-encryption"><info><title>Types of Encryption</title></info>
+      
+      <para>
+        It’s useful here to delineate between different stages of
+        encryption: endpoint security, encryption in transit, and
+        end-to-end encryption.
+      </para>
+      <para>
+        When Snowden refers to endpoint security being
+        <quote>terrifically weak,</quote> he’s referring to the security
+        of the computers on either end of the conversation — the ones
+        doing the encrypting and decrypting. For example, if you send an
+        encrypted email to a friend and someone has managed to install a
+        <link xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="https://en.wikipedia.org/wiki/Keystroke_logging">keylogger</link>
+        on your computer, your adversary can spy on the entire message
+        as well as the passphrase that’s protecting your encryption
+        keys. In this case, your encryption setup isn’t worth very much.
+      </para>
+      <para>
+        But secure communications rely on more than just endpoint
+        security — your data should also be secure in transit, as it
+        passes over the Internet. Take the same example, where you’re
+        sending your friend an email. With a plaintext message, your
+        email provider (such as Gmail or Yahoo) can read it once you hit
+        <quote>Send.</quote> However, PGP encryption provides end-to-end
+        encryption for email, since the message cannot be read in
+        plaintext until one of the conversation partners decrypts it.
+      </para>
+      <para>
+        Finally, transit encryption refers to the encryption of data as
+        it travels between two points, such as your computer and the
+        amazon.com server, allowing you to securely buy things while
+        keeping your credit card info hidden from your ISP or other
+        people on the network. Sites that provide transit encryption
+        begin with <quote>HTTPS</quote> rather than <quote>HTTP.</quote>
+      </para>
+      <para>
+        Tools such as Facebook Chat promise transit encryption but not
+        end-to-end encryption, meaning that the data is encrypted
+        between your computer and Facebook’s server, but can be seen by
+        Facebook as it’s being delivered to the recipient. This isn’t
+        true of end-to-end encryption, meaning that service providers
+        can’t look at the content of your communications even if they
+        wanted to. It’s not enough to ask whether a service provider
+        <emphasis>intends</emphasis> to circumvent its own encryption;
+        providers rarely do. Instead, we must ask whether a service
+        <emphasis>can</emphasis> circumvent encryption, by nature of its
+        design. If the answer is yes, you cannot trust the security of
+        that service, because secure communication relies on taking
+        advantage of each of these different types of encryption — it’s
+        not enough to rely on just one.
+      </para>
+    </section>
+    <section xml:id="threat-models"><info><title>Threat Models</title></info>
+      
+      <blockquote>
+        <para>
+          <quote>The sad fact is that when it comes to the internet,
+          everybody is a spy: the government, the service providers
+          watching your packets whiz by, the employer who operates the
+          network you’re reading this post on, the lurker on the wifi at
+          Starbucks. The ubiquity of digital communications has made it
+          harder than ever before to engage in truly private
+          conversations.</quote>
+        </para>
+        <para>
+          — John Cook,
+          <link xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="http://politburo.gawker.com/introducing-the-gawker-media-securedrop-1688075673">talking</link>
+          about why Gawker set up a SecureDrop instance.
+        </para>
+      </blockquote>
+      <para>
+        Threat modeling is risk assessment — looking at your workflow
+        and assessing areas where you could be targeted, and therefore
+        what you need to protect. It involves asking questions about
+        your work and identifying sensitive information and attack
+        vectors.
+      </para>
+      <para>
+        Stories about the
+        <link xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="http://www.nytimes.com/2013/08/18/magazine/laura-poitras-snowden.html?pagewanted=all&amp;_r=0">lengths</link>
+        Laura Poitras and Glenn Greenwald have to go through to work on
+        the NSA documents might make you think that only national
+        security journalists need to worry about the NSA or encryption.
+      </para>
+      <para>
+        There are dozens of reasons people should use encryption even if
+        you’re not a journalist or a whistleblower — your medical
+        details, credit card info, and personal photos shouldn’t be fair
+        game for hackers or governments.
+      </para>
+      <para>
+        The NSA isn’t the only adversary journalists have to be wary of.
+        Imagine a newsroom that relies on a cloud-based storage system
+        for documents. You and your colleagues are working on a story
+        over the course of a few weeks. Just as you’re beginning to edit
+        the final draft, a reporter is fired. He returns his work laptop
+        but nobody thinks to revoke his access to the cloud storage
+        system your newsroom uses. He takes the story and the months of
+        research to a rival newspaper and scoops you.
+      </para>
+      <para>
+        What steps could have been taken to stop this from happening?
+        Working through this scenario will go a long way towards threat
+        modeling, meaning we figure out the threats facing us and decide
+        how best to defend against them. It starts by asking questions
+        such as:
+      </para>
+      <itemizedlist spacing="compact">
+        <listitem>
+          <para>
+            What are you protecting?
+          </para>
+        </listitem>
+        <listitem>
+          <para>
+            Who/what are you protecting against?
+          </para>
+        </listitem>
+        <listitem>
+          <para>
+            What steps can you take to do that?
+          </para>
+        </listitem>
+      </itemizedlist>
+      <para>
+        Take the above example of the newsroom which got scooped. They
+        want to protect their story — they don’t want all their research
+        to go unrewarded and some other news outlet to get the credit.
+        They’re protecting against disgruntled ex-employees as well as
+        external attackers. To prevent this from happening, the newsroom
+        can take simple steps and implement strict practices where
+        journalists have their access revoked to editorial documents as
+        soon as their employment is terminated.
+      </para>
+      <para>
+        Jonathan Stray, Tow Center for Digital Journalism Fellow, has
+        <link xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="https://source.opennews.org/en-US/learning/security-journalists-part-two-threat-modeling/#threat-modeling">more
+        examples of threats</link> that have nothing to do with the
+        NSA:
+      </para>
+      <blockquote>
+        <para>
+          <emphasis>Police Misconduct.</emphasis> You are reporting a
+          story about local police misconduct. You have talked to
+          sources including police officers and victims. You would
+          prefer that the police commissioner not know of your story
+          before it is ready to be published, to avoid any possible
+          interference.
+        </para>
+        <para>
+          <emphasis>Insider Trading Whistleblower.</emphasis> You are
+          reporting on insider trading at a large bank and talking
+          secretly to a whistleblower who may give you documents. If
+          they are identified before the story comes out, at the very
+          least you will lose your source. The source might lose their
+          job or face legal trouble.
+        </para>
+        <para>
+          <emphasis>Syria War Photographer.</emphasis> You are a
+          photojournalist in Syria with digital images you want to get
+          out of the country. Some of the images may identify people
+          working with the rebels who could be targeted by the
+          government. A security failure could mean someone loses their
+          life.
+        </para>
+      </blockquote>
+      <para>
+        As you can see, threat modeling concerns how you think about a
+        problem as much as what you do to solve it.
+      </para>
+      <para>
+        A 2013 study
+        <link xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="http://www.reuters.com/article/2014/03/28/us-media-cybercrime-idUSBREA2R0EU20140328">showed</link>
+        21 out of the top 25 media organizations have targeted by a
+        nation state. However, state-sponsored hacking may not be the
+        biggest danger facing local journalists — it probably isn’t how
+        people will come by your data or compromise you. If you’re a
+        journalist, you’re much more at risk of your story being
+        scooped, or of falling victim to a subpoena from an overzealous
+        prosecutor who will secretly get access to all of your email.
+      </para>
+      <para>
+        Journalists’ email accounts are often the target of attacks, but
+        it’s more common for hackers to use social engineering to trick
+        Gmail (or you) into resetting the password rather than hacking
+        Google itself. Sometimes, adversaries just use intimidation to
+        get that info out of people.
+      </para>
+      <figure><info><title><quote>Security.</quote> Courtesy of XKCD.</title></info>
+        
+        <mediaobject>
+          <imageobject>
+            <imagedata fileref="http://imgs.xkcd.com/comics/security.png"/>
+          </imageobject>
+          <textobject><phrase><quote>Security.</quote> Courtesy of
+          XKCD.</phrase></textobject>
+        </mediaobject>
+      </figure>
+      <para>
+        Let’s look at another example: a metro journalist reporting on
+        corruption in her city’s police force. This is a story which
+        will have sensitive documents to store, plus sources to protect.
+        These are the assets we’re trying to protect, so that the
+        corrupt officials in question aren’t tipped off in advance about
+        the story.
+      </para>
+      <para>
+        The adversary in this case isn’t as sophisticated as the NSA,
+        but local authorities can still subpoena emails or phone call
+        records to see who you’ve been talking to.
+      </para>
+    </section>
+    <section xml:id="strong-passphrases-and-password-managers"><info><title>Strong passphrases and password managers</title></info>
+      
+      <para>
+        With threat modeling in mind, there are several easy steps you
+        can take to improve your security before ever encrypting your
+        emails or chats. These steps can be just as important — if not
+        more so — than the more complicated steps described later in
+        this guide.
+      </para>
+      <para>
+        The first meaningful action you can take towards ensuring your
+        digital security is to protect your computer and online accounts
+        with a strong password. This is the first — and most important —
+        line of defense between you and anyone with physical access to
+        your computer who wants to impersonate you or steal your data.
+      </para>
+      <para>
+        Traditionally, computer users were encouraged to create and
+        choose a password and attach some numbers onto the end of it.
+        This would lead to passwords such as
+        <emphasis>Tr0ub4dor&amp;3,</emphasis> to reference a popular
+        <link xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="https://xkcd.com/936/">XKCD comic</link>.
+      </para>
+      <figure><info><title><quote>Password Strength.</quote> Courtesy of
+        XKCD.</title></info>
+        
+        <mediaobject>
+          <imageobject>
+            <imagedata fileref="http://imgs.xkcd.com/comics/password_strength.png"/>
+          </imageobject>
+          <textobject><phrase><quote>Password Strength.</quote> Courtesy
+          of XKCD.</phrase></textobject>
+        </mediaobject>
+      </figure>
+      <para>
+        The problem with this password is that it’s hard to remember and
+        it’s not especially secure against a brute-force
+        password-guessing attack.
+      </para>
+      <para>
+        Passphrases are longer than passwords. <quote>The quick fox
+        jumps over the lazy dog</quote> would be a long and memorable
+        passphrase, but it’s a common phrase, so it’s not a good idea to
+        use since password crackers are often preloaded with lists of
+        common phrases.
+      </para>
+      <blockquote>
+        <para>
+          Please confirm that no one has ever had a copy of your private
+          key and that it uses a strong passphrase. Assume your
+          adversary is capable of one trillion guesses per second.
+        </para>
+        <para>
+          Edward Snowden’s first email to Laura Poitras. Source:
+          <link xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="http://www.wired.com/2014/10/snowdens-first-emails-to-poitras/">WIRED.com</link>.
+        </para>
+      </blockquote>
+      <para>
+        The XKCD comic’s advice, to invent a passphrase consisting of
+        unconnected words such as <quote>correct horse battery
+        staple,</quote> is good advice, but it’s surprisingly hard to
+        come up with four or five words that are truly unconnected.
+        Humans are bad at randomness, and words often come in groups — I
+        say brown, you think cow; I say garden, you think shed.
+      </para>
+      <para>
+        The solution is to use a password manager. This is an
+        application which creates and stores passwords in an encrypted
+        <quote>vault</quote> which is protected by a strong passphrase
+        which you memorize. This reduces the number of passphrases you
+        have to memorize to one. There are a handful of well-known
+        passphrase managers, such as 1Password or LastPass — we
+        recommend using
+        <link xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="https://www.keepassx.org">KeePassX</link>, because
+        it’s open source. The app generates lengthy strings of
+        characters, such as
+        <emphasis>0e3@ft5n(xx1gncio,ofigryj0^4vl</emphasis>, which is
+        hard to remember but quite secure, and can be copied and pasted
+        from the application into your web browser. Not being able to
+        remember your password can add to your security, since it means
+        an attacker needs to have access to something physical (your
+        computer, or your password vault) before they can compromise
+        your account.
+      </para>
+      <para>
+        For the master passphrase, and for other passphrases you have to
+        memorize or enter regularly, you can use
+        <link xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="http://world.std.com/~reinhold/diceware.html">Diceware</link>.
+        This creates a passphrase made up of 6 or more words, such as
+        <emphasis>cleft cam synod lacy yr wok</emphasis>. This is more
+        secure than a password like
+        <emphasis>Tr0ub4dor&amp;3</emphasis>. Why? Check out what Micah
+        Lee
+        <link xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="https://firstlook.org/theintercept/2015/03/26/passphrases-can-memorize-attackers-cant-guess/">has
+        to say</link> about passphrase entropy (the metric we use to
+        measure password security):
+      </para>
+      <blockquote>
+        <para>
+          At one trillion guesses per second — per Edward Snowden’s
+          January 2013 warning — it would take an average of 27 million
+          years to guess [a Diceware] passphrase.
+        </para>
+        <para>
+          Not too bad for a passphrase like <quote>bolt vat frisky fob
+          land hazy rigid,</quote> which is entirely possible for most
+          people to memorize. Compare that to
+          <quote>d07;oj7MgLz’%v,</quote> a random password that contains
+          slightly less entropy than the seven-word Diceware passphrase
+          but is significantly more difficult to memorize.
+        </para>
+      </blockquote>
+      <para>
+        As well as protecting password vaults, you should also choose
+        good passphrases for your PGP secret key and disk encryption.
+      </para>
+    </section>
+    <section xml:id="two-factor-authentication-2fa"><info><title>Two Factor Authentication (2FA)</title></info>
+      
+      <para>
+        Another way to beef up the security of your accounts is to
+        enable two-factor authentication, which alters your login
+        process and provides you with a second layer of protection
+        against people trying to change or brute-force your password. In
+        addition to asking you for something you know (your password),
+        you also have to provide something you have (physical access to
+        your cellphone). This can be checked in a couple of ways, such
+        as a code sent to you via SMS which you need to enter during the
+        login process. Other means include <quote>one-time
+        password</quote> apps, QR codes or smartcards.
+      </para>
+      <para>
+        With 2FA, even if an attacker somehow learns your password, they
+        won’t be able to log in without the second factor associated
+        with the account. After the 2014 celebrity photo hack, Recode
+        <link xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="https://recode.net/2014/09/01/apple-says-it-is-actively-investigating-celeb-photo-hack/">reported</link>
+        that two-factor authentication would probably have prevented the
+        attackers from gaining access to the iCloud accounts.
+      </para>
+      <para>
+        For information on how to set up two-factor authentication on
+        most websites and services, check out
+        <link xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="https://www.turnon2fa.com">turnon2FA.com</link> or
+        <link xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="https://twofactorauth.org">twofactorauth.org</link>.
+      </para>
+    </section>
+    <section xml:id="hard-drive-encryption"><info><title>Hard-Drive Encryption</title></info>
+      
+      <para>
+        A journalist’s computer is an unparalleled look into their life.
+        It’s a rolodex, a research history and a store of interview
+        notes and works-in-progress. For this reason, it’s important to
+        lock down access to it, both when you’re at the office and when
+        you’re traveling.
+      </para>
+      <para>
+        Encrypting your hard-drive doesn’t just make it harder for the
+        NSA to access your documents, it makes you more secure generally
+        — if your laptop is stolen, the thief can’t rip out the
+        hard-drive and extract sensitive data.
+      </para>
+      <para>
+        Disk encryption is available for Mac OS X, Windows, and Linux,
+        but the steps for enabling it differ for each operating system.
+        For information on how to encrypt your disk, check out Micah
+        Lee’s guide to
+        <link xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="https://firstlook.org/theintercept/2015/04/27/encrypting-laptop-like-mean/">encrypting
+        your laptop like you mean it</link> on The Intercept.
+      </para>
+      <para>
+        For journalists who travel internationally, it’s important to
+        remember that federal courts have traditionally
+        <link xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="https://www.eff.org/deeplinks/2010/11/effs-guide-protecting-devices-data-border">affirmed</link>
+        that the government does not need suspicion of criminal activity
+        to search a traveler’s laptop at the border (the Ninth Circuit
+        being the only
+        <link xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="https://scholar.google.com/scholar_case?case=13727924395632289367">exception</link>).
+        Non-citizens may be turned away if they do not comply, and U.S.
+        citizens can face extended questioning. It’s up to the
+        individual to decide how much hassle they’re willing to risk,
+        but there are some steps you can take to secure files when
+        traveling.
+      </para>
+      <itemizedlist spacing="compact">
+        <listitem>
+          <para>
+            Have a separate computer for work travel, which does not
+            contain sensitive material.
+          </para>
+        </listitem>
+        <listitem>
+          <para>
+            Sign out of email accounts and power off laptops before
+            approaching the border.
+          </para>
+        </listitem>
+        <listitem>
+          <para>
+            As always, make regular backups, so the loss of a computer
+            is not catastrophic.
+          </para>
+        </listitem>
+      </itemizedlist>
+      <para>
+        As a general rule, consider the question <quote>how bad would it
+        be if a government had access to the files on this
+        computer?</quote> when weighing what should be stored on a
+        computer you’re crossing borders with.
+      </para>
+    </section>
+    <section xml:id="physical-security"><info><title>Physical Security</title></info>
+      
+      <para>
+        If you’re working on sensitive material, it’s also a good idea
+        to keep your laptop in your possession and line of sight as much
+        as possible. This prevents an attacker from stealing or gaining
+        access to the machine long enough to install malicious software
+        on it. Devices left in hotel rooms are susceptible to this kind
+        of attack so often that it’s referred to as an <quote>evil
+        maid</quote> attack.
+      </para>
+      <para>
+        Using the digital security tools described in this document only
+        gives you so much security — good physical security is half the
+        battle. In a 2010 Rolling Stone
+        <link xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="http://www.rollingstone.com/culture/news/meet-the-american-hacker-behind-wikileaks-20101201">profile</link>,
+        American journalist and WikiLeaks volunteer Jacob Appelbaum said
+        that he destroys his laptop if it’s out of his sight for any
+        length of time. Appelbaum has long been the subject of
+        harassment by the U.S. government and what level of risk you
+        individually face is something you have to decide for yourself,
+        but in general it’s a good idea not to expose yourself to more
+        risk than necessary.
+      </para>
+    </section>
+  </section>
+  <section xml:id="signal-and-textsecure"><info><title>Signal and TextSecure</title></info>
+    
+    <blockquote>
+      <para>
+        <quote>Now we have free, easy-to-use tools which you can
+        download on your smartphone, which is sitting in the room with
+        you. For the iPhone, there’s a program called Signal, by Open
+        Whisper Systems. It’s very good, I know the security
+        model.</quote>
+      </para>
+      <para>
+        — Edward Snowden on protecting communications in transit.
+        (<link xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="https://www.youtube.com/watch?t=149&amp;v=j_kieJ-Ng2Q">Source</link>.)
+      </para>
+    </blockquote>
+    <para>
+      Cryptography tools have been available to the public since the
+      early 90s, but the Snowden disclosures kickstarted a renewed
+      interest in widespread consumer cryptography. In response to
+      usability issues with PGP and the ubiquity of smartphones, several
+      new messaging apps providing end-to-end encryption have risen to
+      prominence.
+    </para>
+    <para>
+      Chief among these is
+      <link xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="https://whispersystems.org">Signal</link>, a free and
+      open-source application which employs end-to-end encryption,
+      allowing users to have encrypted calls and text conversations.
+      Signal is completely open source, and is made by
+      <link xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="https://whispersystems.org">Open Whisper
+      Systems</link>.
+    </para>
+    <para>
+      You can download
+      <link xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="https://itunes.apple.com/us/app/signal-private-messenger/id874139669">Signal</link>
+      on iOS devices; on Android devices, the functionality for making
+      encrypted calls and sending encrypted texts is split into two
+      apps:
+      <link xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="https://play.google.com/store/apps/details?id=org.thoughtcrime.securesms">TextSecure</link>
+      and
+      <link xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="https://play.google.com/store/apps/details?id=org.thoughtcrime.redphone">RedPhone</link>.
+      The Android apps are entirely cross-compatible with Signal.
+    </para>
+    <figure><info><title>Signal messages are end-to-end encrypted.</title></info>
+      
+      <mediaobject>
+        <imageobject>
+          <imagedata fileref="images/signal.png"/>
+        </imageobject>
+        <textobject><phrase>Signal messages are end-to-end
+        encrypted.</phrase></textobject>
+      </mediaobject>
+    </figure>
+    <para>
+      It’s important to note that as with most encryption tools, both
+      parties need to be using the app for it to work. Signal uses your
+      device’s data connection (or WiFi), and so users don’t incur SMS
+      fees.
+    </para>
+    <para>
+      Signal also makes it possible for you to verify the cryptographic
+      identities of the people you communicate with. This is not
+      possible in iMessage — the key fingerprints are totally hidden
+      from and inaccessible to the end user. A fingerprint is simply a
+      hexadecimal string of numbers of letters that summarizes and
+      uniquely identifies an encryption key — an important concept that
+      we’ll be referring back to later.
+    </para>
+    <para>
+      It’s important to remember what these apps can and can’t do —
+      while they will encrypt your conversations and log less metadata
+      than traditional text messaging (Open Whisper Systems says they
+      don’t keep logs of who called who), you still have to use a valid
+      cellphone number to sign up and, as always, beware of malware on
+      your device.
+    </para>
+    <section xml:id="doesnt-apple-provide-end-to-end-encryption"><info><title>Doesn’t Apple Provide End-To-End Encryption?</title></info>
+      
+      <para>
+        Apple made news when they
+        <link xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="https://www.apple.com/apples-commitment-to-customer-privacy/">announced</link>
+        that iMessage conversations were end-to-end encrypted, meaning
+        that if Apple is served with a legal order, they could not
+        decrypt your communications even if they wanted to.
+      </para>
+      <blockquote>
+        <para>
+          For example, conversations which take place over iMessage and
+          FaceTime are protected by end-to-end encryption so no one but
+          the sender and receiver can see or read them. Apple cannot
+          decrypt that data.
+        </para>
+        <para>
+          <link xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="http://www.apple.com/privacy/government-information-requests/">What
+          we’re most commonly asked for and how we respond.</link>
+          Apple.com
+        </para>
+      </blockquote>
+      <para>
+        This was a big step, making iMessage more secure than
+        traditional text messaging, and it’s better than what most tech
+        companies are putting out. But while both Signal and iMessage
+        offer end-to-end encryption, there’s an important distinction
+        that makes Signal more secure: the ability to compare
+        fingerprints. Apple opaquely checks the fingerprints, giving
+        users no way of doing their own checking, or being alerted when
+        they change.
+      </para>
+      <figure><info><title>Signal fingerprint verification</title></info>
+        
+        <mediaobject>
+          <imageobject>
+            <imagedata fileref="images/Signal_fingerprint_verification.png"/>
+          </imageobject>
+          <textobject><phrase>Signal fingerprint
+          verification</phrase></textobject>
+        </mediaobject>
+      </figure>
+      <para>
+        As mentioned above, this is one possible shortcoming of
+        closed-source software. Free and open-source software, on the
+        other hand, is available for the entire world to see how it
+        works. This makes it much harder for the software to be
+        compromised by an adversary without its maintainers or
+        developers knowing. Since Signal is open-source, it has a higher
+        degree of trust from the security community than iMessage.
+      </para>
+    </section>
+  </section>
+  <section xml:id="anonymize-your-location-with-tor"><info><title>Anonymize Your Location with Tor</title></info>
+    
+    <para>
+      While you can often be tracked when browsing the Internet by both
+      private corporations and governments, it’s still possible to use
+      the web and avoid many types of mass surveillance. The easiest way
+      is to use the Tor Browser, a web browser based on Firefox. The Tor
+      Browser allows you to browse the web while masking your IP
+      address, which is generally a relatively accurate representation
+      of your approximate location, and can allow you to be uniquely
+      identified.
+    </para>
+    <para>
+      The software is free and open-source, meaning that it comes with a
+      high degree of trust, and is an adapted version of the Firefox
+      browser.
+    </para>
+    <figure><info><title>The Tor Browser</title></info>
+      
+      <mediaobject>
+        <imageobject>
+          <imagedata fileref="images/tor_fpf.png"/>
+        </imageobject>
+        <textobject><phrase>The Tor Browser</phrase></textobject>
+      </mediaobject>
+    </figure>
+    <para>
+      The Tor network is made up of over 6,000 volunteer servers, called
+      nodes. When you use Tor, your connection is routed through three
+      of these nodes — called a circuit – before exiting onto the normal
+      Internet. Anyone intercepting Internet traffic will think your
+      location is the final node which your traffic exits from.
+    </para>
+    <para>
+      The EFF has a good graphical explanation of how Tor works:
+    </para>
+    <figure><info><title>Tor 1</title></info>
+      
+      <mediaobject>
+        <imageobject>
+          <imagedata fileref="https://www.torproject.org/images/htw1.png"/>
+        </imageobject>
+        <textobject><phrase>Tor 1</phrase></textobject>
+      </mediaobject>
+    </figure>
+    <figure><info><title>Tor 2</title></info>
+      
+      <mediaobject>
+        <imageobject>
+          <imagedata fileref="https://www.torproject.org/images/htw2.png"/>
+        </imageobject>
+        <textobject><phrase>Tor 2</phrase></textobject>
+      </mediaobject>
+    </figure>
+    <figure><info><title>Tor 3</title></info>
+      
+      <mediaobject>
+        <imageobject>
+          <imagedata fileref="https://www.torproject.org/images/htw3.png"/>
+        </imageobject>
+        <textobject><phrase>Tor 3</phrase></textobject>
+      </mediaobject>
+    </figure>
+    <section xml:id="setup"><info><title>Setup</title></info>
+      
+      <para>
+        The easiest way to start using Tor is to download and install
+        the
+        <link xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="https://www.torproject.org/download/download-easy.html.en">Tor
+        Browser</link>. Once you download and install it, you’ll see
+        that it works like any other web browser but is a little bit
+        slower, since your traffic is being routed through the Tor
+        network to provide you with anonymity.
+      </para>
+      <para>
+        Some countries, such as
+        <link xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="https://blog.torproject.org/blog/torprojectorg-blocked-gfw-china-sooner-or-later">China</link>
+        and
+        <link xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="https://blog.torproject.org/blog/iran-blocks-tor-tor-releases-same-day-fix">Iran</link>
+        are able to block Tor because, by design, Tor exit nodes are
+        public. It’s possible to get around this by using what are known
+        as <link xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="https://bridges.torproject.org/">bridges</link>
+        — unlisted relays which may be less likely to be blocked by ISPs
+        and/or governments.
+      </para>
+      <para>
+        When Snowden
+        <link xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="http://www.guardian.co.uk/world/2013/jun/17/edward-snowden-nsa-files-whistleblower">was
+        answering questions on Guardian’s website</link> from a
+        <quote>secure Internet connection</quote>, he was probably
+        routing his traffic through the Tor network. He may have also
+        been using a
+        <link xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="https://bridges.torproject.org/">bridge</link> to
+        connect to the Tor network to make the fact that he was using
+        Tor from his IP address less obvious to eavesdroppers.
+      </para>
+    </section>
+    <section xml:id="browsing-habits"><info><title>Browsing Habits</title></info>
+      
+      <para>
+        Here are some further tips to enhance your security and privacy
+        while using the Tor Browser. Some tips, such as disabling Flash,
+        are good advice in any web browser.
+      </para>
+      <itemizedlist spacing="compact">
+        <listitem>
+          <para>
+            Use Tor’s new
+            <link xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="https://blog.torproject.org/blog/tor-browser-45-released">Security
+            Slider</link> feature. This allows you some control over
+            your Tor experience based on your threat model. Generally
+            speaking, we recommend setting it to
+            <quote>Medium-High.</quote>
+          </para>
+        </listitem>
+        <listitem>
+          <para>
+            Be careful of unencrypted sites, ones which begin with
+            <quote>HTTP</quote> rather than <quote>HTTPS.</quote> Tor
+            anonymizes your Internet traffic but unencrypted connections
+            can still be eavesdropped on between the final node and the
+            website.
+          </para>
+        </listitem>
+        <listitem>
+          <para>
+            Try to avoid downloading files such as PDFs or Microsoft
+            Word documents (which end in .doc or .docx), as they can be
+            vehicles for malware that can be used by an attacker to
+            de-anonymize your web browsing.
+          </para>
+        </listitem>
+      </itemizedlist>
+      <para>
+        These limitations are designed to keep Tor as secure as
+        possible. They can get in the way of your regular browsing
+        habits, and so you should keep another web browser around (with
+        add-ons such as
+        <link xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="https://www.eff.org/https-everywhere">HTTPS
+        Everywhere</link>) for other browsing.
+      </para>
+    </section>
+    <section xml:id="what-tor-doesnt-protect-you-from"><info><title>What Tor Doesn’t Protect You From</title></info>
+      
+      <para>
+        It’s important to remember that your Internet connection may not
+        be secure just because it’s anonymous. EFF has made a great
+        <link xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="https://www.eff.org/pages/tor-and-https">visualization
+        of how Tor and HTTPS can work together to protect your
+        privacy</link>.
+      </para>
+      <para>
+        There’s been some discussion of global adversaries — governments
+        or other actors who can monitor the Internet on a huge scale —
+        de-anonymizing Tor traffic by large-scale surveillance. From the
+        <link xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="https://tails.boum.org/doc/about/warning/index.en.html#index7h1">documentation</link>
+        for Tails:
+      </para>
+      <blockquote>
+        <para>
+          A global passive adversary would be a person or an entity able
+          to monitor at the same time the traffic between all the
+          computers in a network. By studying, for example, the timing
+          and volume patterns of the different communications across the
+          network, it would be statistically possible to identify Tor
+          circuits and thus matching Tor users and destination servers.
+        </para>
+      </blockquote>
+      <para>
+        We don’t know if the NSA and GCHQ are big enough to fit this
+        definition of <quote>global adversaries,</quote> but thanks to
+        the Snowden documents we do know they monitor a large portion of
+        the Internet. It’s too early to say whether this large-scale
+        surveillance is enough to defeat Tor’s network anonymity in the
+        general sense.
+      </para>
+      <para>
+        According to leaked NSA slides with titles such as
+        <link xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="http://www.theguardian.com/world/interactive/2013/oct/04/tor-stinks-nsa-presentation-document"><quote>Tor
+        Stinks</quote></link>, Tor is <quote>still the King of high
+        secure, low latency Internet Anonymity</quote> with <quote>no
+        contenders.</quote> However, the same slides also indicate that
+        the surveillance agency can de-anonymize <quote>a very small
+        fraction</quote> of Tor users. Also important to note is that
+        these slides are also several years old now, so we don’t know
+        what the current status of these powerful organization’s
+        capabilities might be.
+      </para>
+      <para>
+        An attack like this becomes much harder as the number of nodes
+        and the volume of traffic increases — not impossible, but more
+        time-consuming and expensive. Everyone can pitch in and bolster
+        the Tor network by setting up a node; since colleges and
+        universities are often their own ISP with strong infrastructure,
+        students and staff are particularly
+        <link xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="https://www.eff.org/torchallenge/tor-on-campus.html">encouraged</link>
+        to set up a Tor node on campus.
+      </para>
+      <para>
+        Recently, the Tor Project
+        <link xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="https://blog.torproject.org/blog/preliminary-analysis-hacking-teams-slides">commented</link>
+        on reports that Hacking Team, the surveillance technology vendor
+        which was massively hacked in July 2015, had managed to
+        compromise the Tor network. The attack turned out to be a case
+        of targeted surveillance rather than a widespread problem:
+      </para>
+      <blockquote>
+        <para>
+          The good news is that they don’t appear to have any exploit on
+          Tor or on Tor Browser. The other good news is that their
+          proposed attack doesn’t scale well. They need to put malicious
+          hardware on the local network of their target user, which
+          requires choosing their target, locating her, and then
+          arranging for the hardware to arrive in the right place. So
+          it’s not really practical to launch the attack on many Tor
+          users at once.
+        </para>
+      </blockquote>
+      <para>
+        The attack reinforced what we already suspected about Tor:
+        targeted attacks <emphasis>can</emphasis> de-anonymize Tor
+        traffic, but widespread attacks probably aren’t feasible for
+        small companies.
+      </para>
+      <para>
+        You also have to be careful <emphasis>where</emphasis> you use
+        Tor, since it could actually leave you <emphasis>more</emphasis>
+        exposed in some instances, even though your traffic is
+        encrypted. That’s because network administrators can tell when
+        someone is using Tor, even though they can’t tell what websites
+        you’re browsing.
+      </para>
+      <para>
+        In December 2013, several members of the Harvard University
+        administration
+        <link xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="http://www.theverge.com/2013/12/18/5224130/fbi-agents-tracked-harvard-bomb-threats-across-tor">received</link>
+        a bomb threat sent from a burner email address. The FBI and
+        Harvard officials were able to trace the email back to a student
+        who had sent the threat to avoid taking a final exam. The
+        student had used an anonymous email with the Tor Browser, but
+        still got caught because he used Tor from the Harvard network:
+        administrators were able to tell he was one of the few people
+        using Tor that morning and confronted him.
+      </para>
+      <para>
+        It’s hard to have much sympathy for the prankster, but the fact
+        that users can sometimes be de-anonymized is worrying for the
+        many human rights activists and journalists who depend on Tor.
+        This is why prominent security researcher Bruce Schneier
+        <link xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="https://www.schneier.com/blog/archives/2015/06/why_we_encrypt.html">talks
+        about</link> using encryption to provide <quote>cover</quote>
+        for others who use encryption to save their lives.
+      </para>
+      <para>
+        As with all privacy-enhancing software, an attacker with
+        physical access to the device can compromise you in any number
+        of ways.
+      </para>
+      <para>
+        With all this said, using Tor still gives us many advantages. It
+        makes the job of the global adversary much harder, and we leave
+        much less identifying data on the servers we connect to through
+        the Tor network. It makes it much harder to be the victim of a
+        <link xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="https://en.wikipedia.org/wiki/Man-in-the-middle_attack">man-in-the-middle
+        attack</link> at our local network or ISP level. Even if some
+        Tor circuits can be defeated by a global adversary, if enough
+        people are getting their traffic routed through the same Tor
+        nodes at the same time, it might be difficult for the adversary
+        to tell which traffic belongs to which circuits.
+      </para>
+    </section>
+  </section>
+  <section xml:id="off-the-record-otr-chat"><info><title>Off-the-Record (OTR) Chat</title></info>
+    
+    <para>
+      The best way to end-to-end encrypt your instant messages is to use
+      something called OTR chat with a Jabber/XMPP account. While it’s
+      possible to use OTR with Google Talk or Facebook Chat, we don’t
+      recommend it because these services could drop support for OTR
+      without warning. Plus, Jabber leaks less metadata than these
+      services, especially if both people use the same Jabber server.
+    </para>
+    <section xml:id="using-otr"><info><title>Using OTR</title></info>
+      
+      <para>
+        To use OTR, you’ll need to download additional software with
+        your IM client. If you use Windows you can download and install
+        <link xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="https://pidgin.im/">Pidgin</link> and the
+        <link xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="http://www.cypherpunks.ca/otr/">OTR plugin</link>.
+        If you use Mac OS X you can download and install
+        <link xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="https://adium.im">Adium</link>, a free software
+        chat application that includes OTR support. If you use GNU/Linux
+        you can install the pidgin and pidgin-otr packages.
+      </para>
+      <para>
+        The OTR client for
+        <link xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="Android">https://play.google.com/store/apps/details?id=info.guardianproject.otr.app.im</link>
+        and
+        <link xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="https://itunes.apple.com/us/app/chatsecure/id464200063">iOS
+        devices</link> is called ChatSecure.
+      </para>
+      <para>
+        For a full explanation of how OTR works and how to set it up,
+        check out The Intercept’s guide to
+        <link xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="https://firstlook.org/theintercept/2015/07/14/communicating-secret-watched/">chatting
+        in secret while we’re all being watched</link>. As an added
+        bonus, The Intercept also explains how to set up OTR to work
+        with Tor so you can keep your chats both anonymous and
+        encrypted.
+      </para>
+      <para>
+        As with PGP, which will be discussed in a later section, OTR is
+        used for two things: <emphasis role="strong">encrypting the
+        contents</emphasis> of real-time instant message conversations
+        and <emphasis role="strong">verifying the identity</emphasis> of
+        people you chat with. Identity verification is important, and
+        something many OTR users neglect to do. While OTR is more
+        user-friendly than other types of encryption, there are some
+        things you should know about OTR to understand it fully and know
+        what attacks against it are possible.
+      </para>
+      <para>
+        OTR encrypts the contents of your chats but not the metadata
+        related to them — who you talk to, how often, and when. You can
+        use Google Talk and Facebook Chat with OTR, but we know that
+        these services comply with surveillance requests from many
+        governments and leave your metadata exposed, even if you’re
+        encrypting the content of your IM conversations. For this
+        reason, we recommend using XMPP services that demonstrably take
+        the necessary precautions to ensure user privacy on all fronts:
+        XMPP servers that support communication over Tor, encrypt
+        metadata (like the <quote>to</quote> and <quote>from</quote>
+        fields) between servers, require OTR from the very beginning of
+        a conversation, and have privacy-friendly logging policies. XMPP
+        servers hosted by
+        <link xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="https://www.calyxinstitute.org/projects/public_jabber_xmpp_server">Calyx
+        Institute</link>,
+        <link xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="https://help.riseup.net/en/chat">Riseup</link> and
+        <link xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="https://duck.co/blog/post/4/xmpp-services-at-duckduckgo">Duck
+        Duck Go</link> score quite highly in this regard. Have a look
+        at the <link xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="https://xmpp.net/directory.php">Public XMPP
+        Server Directory</link> for even more options for
+        privacy-forward XMPP services.
+      </para>
+    </section>
+    <section xml:id="keys"><info><title>Keys</title></info>
+      
+      <para>
+        When you start using OTR, your chat client generates an
+        encryption key and stores it in a file on your hard drive. If
+        your computer or smartphone gets lost, stolen, or infected with
+        malware, you should assume your key has been compromised — an
+        attacker could impersonate you. If this happens, you should
+        generate a new key and reverify yourself with your friends.
+      </para>
+      <para>
+        When you start a new OTR session, your OTR software and your
+        friend’s OTR software agree upon a session key. This temporary
+        encryption key is used to encrypt and decrypt messages on a
+        running basis during the conversation. If you start chatting
+        with the same person later, your clients generate a brand new
+        session key.
+      </para>
+      <para>
+        In this way, even if an eavesdropper is logging all of your
+        encrypted OTR conversations — which NSA believes it is legally
+        <link xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="http://www.forbes.com/sites/andygreenberg/2013/06/20/leaked-nsa-doc-says-it-can-collect-and-keep-your-encrypted-data-as-long-as-it-takes-to-crack-it/">allowed
+        to do</link> in many cases, even if you’re a US citizen and
+        they don’t have a warrant or probable cause — and later they
+        compromise your OTR key, they cannot use it to go back and
+        decrypt your old conversations.
+      </para>
+      <para>
+        This property is called forward secrecy, and it is a feature
+        that OTR has which PGP does not. If your PGP secret key (more on
+        this below) gets compromised, and the attacker has access to all
+        the encrypted messages you’ve received, they can go back and
+        decrypt them all.
+      </para>
+    </section>
+    <section xml:id="a-note-about-gmails-off-the-record-function."><info><title>A Note About Gmail’s <quote>off the record</quote>
+      function.</title></info>
+      
+      <para>
+        When using Google Talk for instant messaging, there’s a setting
+        to <quote>Go off the record,</quote> and it’s useful to
+        differentiate between this feature and what the Off-the-Record
+        encryption software offers.
+      </para>
+      <para>
+        <inlinemediaobject>
+          <imageobject>
+            <imagedata fileref="images/gtalk_off_the_record_john.png"/>
+          </imageobject>
+        </inlinemediaobject> <inlinemediaobject>
+          <imageobject>
+            <imagedata fileref="images/hangouts_history.png"/>
+          </imageobject>
+        </inlinemediaobject>
+      </para>
+      <para>
+        Essentially, going off the record in Google Talk (or disabling
+        the <quote>Hangout history</quote> function, if you’ve updated
+        to Hangouts) does not store the conversation log in either
+        conversation participant’s Gmail chat history. This may seem
+        more secure, but it only prevents the conversation participants
+        from viewing the history of their own conversations. There is no
+        guarantee or way of determining whether or not Google retains a
+        copy of your conversation.
+      </para>
+      <para>
+        By comparison, conversations over Google Talk which use Off-The
+        Record message encryption are only readable to the participants,
+        and Google is never able to read the contents of your
+        conversation. This is far more secure.
+      </para>
+    </section>
+    <section xml:id="verifying-a-contacts-otr-fingerprint"><info><title>Verifying A Contact’s OTR Fingerprint</title></info>
+      
+      <para>
+        If you want to use OTR to talk privately with friends,
+        colleagues, and sources, they need to be using OTR too. An
+        encrypted chat requires both people have keys, so if you’re
+        using OTR and you’re chatting with a colleague who’s using
+        facebook.com, you cannot have an encrypted conversation.
+      </para>
+      <para>
+        When you start an encrypted OTR session, your chat software will
+        tell you something like this:
+      </para>
+      <blockquote>
+        <para>
+          *** Encrypted OTR chat initiated. tommyc@jabber.ccc.de’s
+          identity not verified.
+        </para>
+      </blockquote>
+      <para>
+        With OTR, each key has a fingerprint, a string of numbers and
+        letters you can use to verify someone’s identity. One of the OTR
+        fingerprints for Tommy Collison, an editor of this guide, is
+        AF4E5D5A D8AE95CB C1672DDC E44FA6F4 F8706C16. Unlike session
+        keys, encryption keys are persistent: the fingerprint will stay
+        the same across numerous conversations unless you switch devices
+        or are the victim of a man-in-the-middle attack.
+      </para>
+      <para>
+        Fingerprints are typically unique to devices, not accounts. This
+        means that if I chat with people on my Jabber account from my
+        Mac and from my Android phone, those contacts will have two
+        fingerprints for me. It’s important to repeat the verification
+        step on each device with each contact you talk to.
+      </para>
+      <figure><info><title>Verifying a contact’s OTR fingerprint in Adium.</title></info>
+        
+        <mediaobject>
+          <imageobject>
+            <imagedata fileref="images/verifying_otr_fingerprints.png"/>
+          </imageobject>
+          <textobject><phrase>Verifying a contact’s OTR fingerprint in
+          Adium.</phrase></textobject>
+        </mediaobject>
+      </figure>
+      <para>
+        In the screenshot above, you can see the OTR fingerprints for
+        both users in the session. The other person should see the exact
+        same fingerprints, with positions swapped. In order to be sure
+        that both parties are seeing the correct fingerprints you each
+        need to find some other trusted channel to verify fingerprints.
+        You could meet up in person, or talk on the phone if you can
+        recognize their voice, or send a PGP-encrypted and signed email.
+      </para>
+      <para>
+        OTR fingerprints are 40 characters. It’s statistically
+        impossible to generate two OTR keys that have the same
+        fingerprint. However, it is possible to generate an OTR key that
+        isn’t a collision but looks like one on cursory inspection. For
+        example, the first few characters and last few characters could
+        be the same with different characters in the middle. For this
+        reason, it’s important to compare all 40 characters to be sure
+        you have the correct OTR key.
+      </para>
+      <para>
+        Without verifying keys you have no way to know that you’re not
+        falling victim to an undetected, successful MITM attack. Even if
+        the person you’re talking to is definitely your real friend
+        because she know things that only she would know, and you’re
+        using OTR encryption, an attacker might still be reading your
+        conversation. This is because you might actually be having an
+        encrypted OTR conversation with the attacker, who is then having
+        a separate encrypted OTR conversation with your real friend and
+        just forwarding messages back and forth. Rather than your
+        friend’s fingerprint your client would be seeing the attacker’s
+        fingerprint. All you, as a user, can see is that the
+        conversation is <quote>Unverified</quote>.
+      </para>
+      <para>
+        That said, it’s better to use OTR unverified than it is to have
+        a sensitive conversation through an unencrypted channel.
+        Although manual fingerprint verification is the most secure way
+        of verifying a chat partner’s identity, there are some
+        on-the-fly methods, such as when Laura Poitras asked someone
+        both she and Snowden were in contact with to tweet Poitras’s
+        fingerprint, which provided external verification of the key:
+      </para>
+      <figure><info><title>Micah Lee’s tweet verified Laura Poitras’s GPG
+        fingerprint.</title></info>
+        
+        <mediaobject>
+          <imageobject>
+            <imagedata fileref="images/micah_fingerprint_tweet.png"/>
+          </imageobject>
+          <textobject><phrase>Micah Lee’s tweet verified Laura Poitras’s
+          GPG fingerprint.</phrase></textobject>
+        </mediaobject>
+      </figure>
+    </section>
+    <section xml:id="logs"><info><title>Logs</title></info>
+      
+      <para>
+        OTR will encrypt the content of your chats, but there’s another
+        factor to consider when you’re chatting with Off-The Record:
+        logs.
+      </para>
+      <para>
+        Here is an excerpt from the chat logs of a conversation between
+        Chelsea Manning (shown here as bradass87) and Adrian Lamo, who
+        turned her in to authorities. They were
+        <link xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="http://www.wired.com/threatlevel/2011/07/manning-lamo-logs">published</link>
+        by Wired.
+      </para>
+      <blockquote>
+        <para>
+          (1:40:51 PM) bradass87 has not been authenticated yet. You
+          should authenticate this buddy.
+        </para>
+      </blockquote>
+      <blockquote>
+        <para>
+          (1:40:51 PM) Unverified conversation with bradass87 started.
+        </para>
+      </blockquote>
+      <blockquote>
+        <para>
+          (1:41:12 PM) bradass87: hi
+        </para>
+      </blockquote>
+      <blockquote>
+        <para>
+          (1:44:04 PM) bradass87: how are you?
+        </para>
+      </blockquote>
+      <blockquote>
+        <para>
+          (1:47:01 PM) bradass87: im an army intelligence analyst,
+          deployed to eastern baghdad, pending discharge for
+          <quote>adjustment disorder</quote> in lieu of <quote>gender
+          identity disorder</quote>
+        </para>
+      </blockquote>
+      <blockquote>
+        <para>
+          (1:56:24 PM) bradass87: im sure you’re pretty busy…
+        </para>
+      </blockquote>
+      <blockquote>
+        <para>
+          (1:58:31 PM) bradass87: if you had unprecedented access to
+          classified networks 14 hours a day 7 days a week for 8+
+          months, what would you do?
+        </para>
+      </blockquote>
+      <para>
+        As you can see from <quote>Unverified conversation with
+        bradass87 started,</quote> they were using OTR to encrypt their
+        conversation, but excerpts were published on Wired’s website and
+        used as evidence in Manning’s trail. The reason why? Lamo’s OTR
+        client was logging a copy of the conversation and saving the
+        chat to a hard drive.
+      </para>
+      <para>
+        For journalists, logging conversations (by taking notes or using
+        a tape recorder) is part of the job, but you should know that
+        logging conversations greatly compromises your privacy. If
+        Lamo’s OTR client had logging turned off, it’s likely that the
+        above conversation would never have become part of the public
+        record.
+      </para>
+      <para>
+        We recommend turning off logging by default and saving
+        individual conversations only when necessary.
+      </para>
+      <para>
+        With the release of OTR 4.0 in September 2012, Pidgin stopped
+        logging OTR conversations by default. As of July 2015, Adium
+        still logs OTR conversations by default, and you must manually
+        turn off logging yourself in Adium’s Preferences pane.
+      </para>
+    </section>
+  </section>
+  <section xml:id="pretty-good-privacy-pgp-email-encryption"><info><title><quote>Pretty Good Privacy</quote> (PGP) Email
+    Encryption</title></info>
+    
+    <para>
+      In 1991, cryptographer Phil Zimmermann developed
+      <link xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="https://en.wikipedia.org/wiki/Pretty_Good_Privacy">Pretty
+      Good Privacy</link> (PGP), software that he intended for peace
+      activists to use while organizing in the anti-nuclear movement.
+    </para>
+    <para>
+      PGP stands for <quote>Pretty Good Privacy,</quote> software you
+      can use to encrypt your email messages. Today, PGP is a company
+      that sells proprietary encryption software.
+      <link xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="http://openpgp.org/">OpenPGP</link> is the open
+      protocol that defines how PGP encryption works, and
+      <link xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="http://www.gnupg.org/">GnuPG</link> (GPG for short)
+      is free software, and is totally compatible with the proprietary
+      version. GPG is much more popular than PGP today because it’s free
+      for everyone to download, and cypherpunks trust it more because
+      it’s open source. The terms PGP and GPG are often used
+      interchangably.
+    </para>
+    <para>
+      Unfortunately, the standard is notoriously hard to use, as
+      evidenced by Glenn Greenwald initially being
+      <link xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="http://www.huffingtonpost.com/2013/06/10/edward-snowden-glenn-greenwald_n_3416978.html?1370895818">unable</link>
+      to set it up and talk securely with Edward Snowden. However, once
+      you’re in the habit of using it regularly, it gets easier.
+    </para>
+    <para>
+      If you use PGP encryption, you will have to make a few changes to
+      how you use email. For example, if you use PGP on your computer
+      but receive an encrypted email on your phone, you won’t be able to
+      decrypt the email and read it until you get back to your computer.
+    </para>
+    <para>
+      PGP is used in two ways with email:
+    </para>
+    <orderedlist numeration="arabic" inheritnum="ignore" continuation="restarts">
+      <listitem>
+        <para>
+          A sender can encrypt the content of email messages so that
+          only the sender and receiver can read them.
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+          Senders can sign messages, proving that the message the sender
+          sent is the same one the receiver reads, and that it wasn’t
+          tampered with in transit. (Assuming you trust the public key —
+          more on this later.)
+        </para>
+      </listitem>
+    </orderedlist>
+    <para>
+      On the other end, the receiver uses PGP to decrypt the message and
+      verify the email’s digital signature.
+    </para>
+    <section xml:id="whats-a-key"><info><title>What’s a key?</title></info>
+      
+      <para>
+        PGP uses a public key and a private key, two
+        mathematically-related numbers which are represented as unique
+        strings of randomly-generated numbers and letters. Information
+        about the public key is usually stored on something called a
+        public key server, which is a bit like a phonebook. When people
+        want to email you securely, they can look up your public key and
+        send you an encrypted email.
+      </para>
+      <figure><info><title>A sample PGP block.</title></info>
+        
+        <mediaobject>
+          <imageobject>
+            <imagedata fileref="images/pgp_block.png"/>
+          </imageobject>
+          <textobject><phrase>A sample PGP block.</phrase></textobject>
+        </mediaobject>
+      </figure>
+      <para>
+        Like OTR, each PGP key has a unique fingerprint.
+        <link xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="https://pgp.mit.edu/pks/lookup?op=get&amp;search=0xE7E8E7D097604F9D">Here’s</link>
+        the PGP public for Tommy Collison, one of the editors of this
+        guide. That key’s fingerprint is 696E C53E 8535 6DE8 10C3 75D2
+        E7E8 E7D0 9760 4F9D. Look at the PGP block above — it’s long and
+        would be difficult to verbally confirm with another person. A
+        fingerprint is a short and more convenient way to uniquely
+        represent a key.
+      </para>
+      <para>
+        You can think of your public key and private key like your email
+        address and email passphrase. You probably want your general
+        email address to be public, so that people can contact you —
+        it’s the same with your public key. And, in the same way you
+        should always keep your email passphrase to yourself, you should
+        never share your private key with anyone or attach it in an
+        email.
+      </para>
+      <para>
+        It’s a good idea to publicize your public key, to help people
+        who want to contact you verify that the public key they use
+        belongs to you. Many people
+        <link xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="https://twitter.com/tommycollison/status/620696207187398656">tweet</link>
+        their key’s fingerprint,
+        <link xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="http://parkerhiggins.net/2014/08/email-signature-nudge-encryption-use/">mention</link>
+        it in their email signatures, or
+        <link xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="https://twitter.com/ggreenwald">link</link> to it
+        in their Twitter bio:
+      </para>
+      <figure><info><title>Glenn Greenwald’s Twitter bio, which includes a link to
+        his PGP public key.</title></info>
+        
+        <mediaobject>
+          <imageobject>
+            <imagedata fileref="https://raw.githubusercontent.com/tommycollison/encryption-works/issue_76_pgp_intro/images/Greenwald_key_link.png"/>
+          </imageobject>
+          <textobject><phrase>Glenn Greenwald’s Twitter bio, which
+          includes a link to his PGP public key.</phrase></textobject>
+        </mediaobject>
+      </figure>
+      <para>
+        This increases the legitimacy of the key. Not only does an
+        attacker have to create a false key for Greenwald, but they have
+        to hack his Twitter account and point the link in his bio to the
+        fake key. That’s not likely to happen, especially since — for
+        added security — Glenn’s public key is listed on
+        <link xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="https://theintercept.com/staff/glenn-greenwald/">his
+        profile at his website</link>. This line of attack leaves
+        several obvious clues, and so it’s hard to pull off. Therefore,
+        we can say with some degree of trust that Glenn’s public key
+        info is legitimate.
+      </para>
+    </section>
+    <section xml:id="software"><info><title>Software</title></info>
+      
+      <para>
+        To install GPG, Windows users can install
+        <link xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="http://www.gpg4win.org">Gpg4win</link> and Mac OS X
+        users can download
+        <link xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="https://gpgtools.org">GPGTools</link>. If you run
+        GNU/Linux you should already have GPG installed (since GPG is a
+        command line program) but software exists that interfaces with
+        email clients and makes it much easier to use.
+      </para>
+      <para>
+        To use GPG securely, you have to download and use a desktop mail
+        client rather than log into your email through a browser. We
+        recommend using
+        <link xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="https://www.mozilla.org/en-US/thunderbird">Thunderbird</link>
+        as your desktop email client with the
+        <link xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="https://www.enigmail.net/home/index.php">Enigmail</link>
+        add-on for GPG.
+      </para>
+      <para>
+        While some third parties have developed end-to-end encryption
+        plugins that you can use with browser mail, we currently don’t
+        recommend them because they’re comparatively less secure than
+        desktop client-based GPG and don’t have all the features.
+      </para>
+    </section>
+    <section xml:id="sending-and-receiving-encrypted-email"><info><title>Sending And Receiving Encrypted Email</title></info>
+      
+      <para>
+        Once you’ve installed Enigmail, you’ll notice some new settings
+        when you go to compose an email in Thunderbird.
+      </para>
+      <figure><info><title>Sending an encrypted email with Thunderbird and the
+        Enigmail add-on.</title></info>
+        
+        <mediaobject>
+          <imageobject>
+            <imagedata fileref="images/sending_encrypted_email_with_thunderbird_and_enigmail.png"/>
+          </imageobject>
+          <textobject><phrase>Sending an encrypted email with
+          Thunderbird and the Enigmail add-on.</phrase></textobject>
+        </mediaobject>
+      </figure>
+      <para>
+        When sent, only the private key for
+        <literal>sva1bard@risup.net</literal> will be able to decrypt
+        this email (since it’s encrypted with the corresponding public
+        key).
+      </para>
+      <para>
+        If you try and access an encrypted email in a web browser, it’s
+        unreadable because the private key is missing.
+      </para>
+      <figure><info><title>Web browsers can’t read PGP-encrypted email.</title></info>
+        
+        <mediaobject>
+          <imageobject>
+            <imagedata fileref="images/pgp_gibberish_in_browser.png"/>
+          </imageobject>
+          <textobject><phrase>Web browsers can’t read PGP-encrypted
+          email.</phrase></textobject>
+        </mediaobject>
+      </figure>
+      <para>
+        But when the email is accessed with the correct private key, it
+        becomes readable again:
+      </para>
+      <figure><info><title>The decrypted email.</title></info>
+        
+        <mediaobject>
+          <imageobject>
+            <imagedata fileref="images/decrypted_email.png"/>
+          </imageobject>
+          <textobject><phrase>The decrypted email.</phrase></textobject>
+        </mediaobject>
+      </figure>
+    </section>
+  </section>
+  <section xml:id="encrypting-files-with-pgp"><info><title>Encrypting Files with PGP</title></info>
+    
+    <para>
+      As well as powering email encryption with desktop clients like
+      Apple Mail or Thunderbird, you can also use PGP to encrypt files
+      on your hard-drive with your public key.
+    </para>
+    <para>
+      This serves as a second layer of protection if you use full-disk
+      encryption and lends you extra security to transfer those files
+      onto a flash drive or upload them to a cloud storage website.
+    </para>
+    <figure><info><title>Using GPGTools to encrypt a file on Mac.</title></info>
+      
+      <mediaobject>
+        <imageobject>
+          <imagedata fileref="images/encrypt_file_pgp_mac.png"/>
+        </imageobject>
+        <textobject><phrase>Using GPGTools to encrypt a file on
+        Mac.</phrase></textobject>
+      </mediaobject>
+    </figure>
+    <section xml:id="the-web-of-trust"><info><title>The Web of Trust</title></info>
+      
+      <para>
+        PGP works best when a
+        <link xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="https://en.wikipedia.org/wiki/Web_of_trust">web of
+        trust</link> is created. Strong crypto can’t be broken, but can
+        still be circumvented since humans are the weakest elements of
+        any security system. People using PGP can fall victim to what’s
+        called a <quote>man in the middle attack.</quote> Let’s say
+        you’re talking to your colleague via encrypted email and I’m an
+        attacker. I could trick you into thinking that my public key was
+        your colleague’s. You’d encrypt a message with your private key
+        and my public key. I can decrypt it, read and/or tamper with it,
+        and then send the compromised message on to your colleague, with
+        information purported to be from you.
+      </para>
+      <para>
+        This can be solved, or at least mitigated, if you and your
+        colleague independently verify each other’s keys. This way, you
+        verify your colleague’s public key independently of when they
+        email you. But this raises another problem — meeting people and
+        verifying their keys is time-consuming.
+      </para>
+      <para>
+        This is where the web of trust comes in. As time goes on, you
+        meet people and verify their keys. If you sign those keys
+        (publicly asserting that you’ve verified them), that functions
+        as a vouch of sorts — this key has verified that key belongs to
+        who it says it does. If I trust your key, by extension I should
+        trust the keys you’ve signed, even if I don’t know the signed
+        key personally. I trust it because I trust you.
+      </para>
+      <para>
+        The Intercept’s technologist Micah Lee helped Snowden get in
+        contact with Laura Poitras. In an essay about his experience, he
+        <link xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="https://firstlook.org/theintercept/2014/10/28/smuggling-snowden-secrets/">references</link>
+        the usefulness of the web of trust and external verification:
+      </para>
+      <blockquote>
+        <para>
+          My encryption key was posted at both sites, so Snowden was
+          able to find it easily, and the key was digitally signed by
+          people who were well-known in the privacy world (pioneering
+          blogger Cory Doctorow and free software champion Richard
+          Stallman, for instance); this meant those people had digitally
+          vouched, in a way that was incredibly difficult to forge, that
+          the key really belonged to me and not to, say, some NSA
+          trickster. In other words, Snowden didn’t need to worry about
+          the key being a fake. Poitras was a founding board member of
+          the FPF, so he assumed I would have her key, and he was right.
+        </para>
+      </blockquote>
+      <para>
+        There are some occasions when you won’t want someone to sign
+        your key, since doing so implies a relationship between the two
+        keys and, by extension, the two people. There are times when you
+        don’t always want to reveal that — the source-journalist
+        relationship comes to mind.
+      </para>
+      <para>
+        On the other hand, signatures lend trustworthiness — if I were a
+        whistleblower looking for Glenn Greenwald’s correct key, I’d
+        trust the one signed by his colleagues more than any others.
+      </para>
+      <para>
+        (When you create a PGP key, there’s no verification process that
+        you the email address associated with the key, so signing keys
+        is a way of proving ownership. This has happened to several Tor
+        developers and one of the editors of this guide.)
+      </para>
+      <para>
+        In general, it’s good to be cautious about signing keys. It’s
+        worth weighing the pros and cons of signing and to decide on a
+        case-by-case basis.
+      </para>
+    </section>
+    <section xml:id="how-to-verify-someones-key-in-enigmail-and-view-signatures"><info><title>How To Verify Someone’s Key in Enigmail and View
+      Signatures</title></info>
+      
+      <para>
+        If you’re a journalist trying to get to grips with these privacy
+        tools, it’s useful to get together with colleagues and help one
+        another out with setup. In addition, you can increase the
+        trustworthiness of a colleague’s key by signing it. In essence,
+        you’re publicly asserting that you trust that a person’s key
+        belongs to that person, and wasn’t created by someone else.
+      </para>
+      <para>
+        Here’s how to verify someone’s GPG key:
+      </para>
+      <itemizedlist spacing="compact">
+        <listitem>
+          <para>
+            Meet your colleagues face-to-face. Each person should bring
+            their own laptop.
+          </para>
+        </listitem>
+        <listitem>
+          <para>
+            Make sure your key is uploaded to a keyserver. In the
+            <quote>Key Management</quote> section of Enigmail,
+            right-click and select <quote>Upload Public Keys to
+            Keyserver.</quote> It should suggest
+            <link xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="http://pgp.mit.edu">pgp.mit.edu</link> by
+            default, which will work fine.
+          </para>
+        </listitem>
+        <listitem>
+          <para>
+            Search for your friend’s key in the keyserver and download
+            and import it. Then, verbally verify that the fingerprints
+            are the same. If you know your colleagues, this is enough,
+            but if you’re unsure of names, feel free to ask people to
+            bring some form of ID so you can double-check.
+          </para>
+        </listitem>
+        <listitem>
+          <para>
+            Once you’ve verified their key is correct, you should sign
+            it with yours.
+          </para>
+        </listitem>
+        <listitem>
+          <para>
+            You can see who else has signed a person’s key by clicking
+            on it and choosing <quote>View Signatures</quote> from the
+            <quote>Select action …</quote> drop-down menu.
+          </para>
+        </listitem>
+        <listitem>
+          <para>
+            In the end, each person should have an GPG keyring
+            containing signed keys of each other person.
+          </para>
+        </listitem>
+      </itemizedlist>
+    </section>
+    <section xml:id="pgp-isnt-just-for-email"><info><title>PGP Isn’t Just For Email</title></info>
+      
+      <para>
+        While PGP is often used for email encryption, nothing stops you
+        from using it to encrypt anything and publish it using any
+        medium. You can post PGP-encrypted messages on blogs, social
+        networks, and forums.
+      </para>
+      <para>
+        For example, Wired journalist Kevin Poulsen
+        <link xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="http://www.wired.com/threatlevel/2013/06/signed-bda0df3c/">published
+        a PGP-encrypted message on Wired’s website</link> intended for
+        Edward Snowden to read the same week his name was made public.
+        Snowden’s alleged public key was
+        <link xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="http://pgp.mit.edu/pks/lookup?search=edward+snowden">published</link>
+        on a keyserver under a Hushmail email address.
+      </para>
+      <para>
+        As long as Wired has a copy of Snowden’s real public key, only
+        someone in possession of Snowden’s secret key can decrypt this
+        message.
+      </para>
+      <para>
+        Here’s a message that was encrypted to Micah Lee’s public key.
+        Without having access to his associated private key, NSA should
+        not be able to break the encryption. (NSA — let us know if you
+        get it.)
+      </para>
+      <programlisting>
+-----BEGIN PGP MESSAGE-----
+Version: GnuPG v1.4.12 (GNU/Linux)
+
+hQIMA86M3VXog5+ZAQ//Wep9ZiiCMSmLk/Pt54d2wQk07fjxI4c1rw+jfkKQAi4n
+6HzrX9YIbgTukuv/0Bjl+yp3qcm22n6B/mk+P/3Cbxo+bW3gsq5OLFNenQO3RMNM
+i9RC+qJ82sgPXX6i9V/KszNxAyfegbMseoW9FcFwViD14giBQwA7NDw3ICm89PTj
+y+YBMA50iRqdErmACz0fHfA/Ed5yu5cOVVa8DD12/upTzx7i0mmkAxwsKiktEaKQ
+vg8i1gvzqeymWYnckGony08eCCIZFc78CeuhODy0+MXyrnBRP9p++fcQE7/GspKo
+SbxVT3evwT2UkebezQT2+AL57NEnRsJzsgQM4R0sMgvZI7I6kfWKerhFMt3imSt1
+QGphXmKZPRvKqib59U57GsZU1/2CMIlYBVMTZIpYKRh6NgE8ityaa4gehJDl16xa
+pZ8z3DMNt3CRF8hqWmJNUfDwUvXBEk8d/8Lkh39/IFHbWqNJh6cgq3+CipXH5HjL
+iVh7tzGPfB6yn+RETzcZjesZHtz4hFudOxTMV0YnTIv0FGtfxsfEQe7ZVmmfqGNG
+glxE0EfbXt0psLXngFMneZYBJqXGFsK3r5bHjRm6wpC9EDAzXp+Tb+jQgs8t5eWV
+xiQdBpNZnjnGiIOASOxJrIRuzbTjo389683NfLvPRY8eX1iEw58ebjLvDhvDZ2jS
+pwGuWuJ/8QNZou1RfU5QL0M0SEe3ACm4wP5zfUGnW8o1vKY9rK5/9evIiA/DMAJ+
+gF20Y6WzGg4llG9qCAnBkc3GgC7K1zkXU5N1VD50Y0qLoNsKy6eengXvmiL5EkFK
+RnLtP45kD2rn6iZq3/Pnj1IfPonsdaNttb+2fhpFWa/r1sUyYadWeHs72vH83MgB
+I6h3Ae9ilF5tYLs2m6u8rKFM8zZhixSh
+=a8FR
+-----END PGP MESSAGE-----
+</programlisting>
+    </section>
+    <section xml:id="attacks"><info><title>Attacks</title></info>
+      
+      <para>
+        If you don’t verify identities you have no way of knowing
+        whether or not you are the victim of a MITM attack.
+      </para>
+      <para>
+        Washington Post journalist Barton Gellman, who Edward Snowden
+        trusted with information about the NSA’s PRISM program,
+        <link xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="http://www.washingtonpost.com/world/national-security/code-name-verax-snowden-in-exchanges-with-post-reporter-made-clear-he-knew-risks/2013/06/09/c9a25b54-d14c-11e2-9f1a-1a7cdee20287_story.html">wrote
+        about his experience using PGP</link>.
+      </para>
+      <blockquote>
+        <para>
+          On Thursday, before The Post published its first story, I made
+          contact on a new channel. He was not expecting me there and
+          responded in alarm.
+        </para>
+        <para>
+          <quote>Do I know you?</quote> he wrote.
+        </para>
+        <para>
+          I sent him a note on another channel to verify my digital
+          <quote>fingerprint,</quote> a precaution we had been using for
+          some time. Tired, I sent the wrong one. <quote>That is not at
+          all the right fingerprint,</quote> he wrote, preparing to sign
+          off. <quote>You’re getting MITM’d.</quote> He was talking
+          about a <quote>man in the middle</quote> attack, a standard
+          NSA technique to bypass encryption. I hastily corrected my
+          error.
+        </para>
+      </blockquote>
+      <para>
+        Snowden was right to be cautious and to insist that he check
+        Gellman’s new PGP fingerprint. PGP, if used correctly, provides
+        the tools necessary to prevent MITM attacks. But these tools
+        only work if users are vigilant about identity verification and
+        careful in obtaining keys.
+      </para>
+    </section>
+    <section xml:id="what-pgp-doesnt-do"><info><title>What PGP Doesn’t Do</title></info>
+      
+      <para>
+        To use PGP effectively, it’s good to understand what it does and
+        doesn’t do.
+      </para>
+      <para>
+        For instance, using PGP with email encryption only encrypts the
+        <emphasis>content</emphasis> of your emails. It doesn’t encrypt
+        the To/From fields, the subject line or the headers, the sundry
+        details associated with the message. For an email, metadata
+        would include the associated email addresses, the time and date
+        sent, and the IP address the email originated from, as well as
+        servers it traveled through en route to its destination. This
+        means that someone surveilling me can tell that at 2:05pm on
+        Sunday, June 21, <literal>tommy@freedom.press</literal> emailed
+        <literal>trevor@freedom.press</literal> from a certain IP
+        address, but they can’t tell what the content of the message
+        was.
+      </para>
+      <para>
+        Senator Diane Feinstein (D-Calif.) is a staunch defender of the
+        NSA and has long
+        <link xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="http://www.theguardian.com/world/2013/oct/21/dianne-feinstein-defends-nsa-data-collection">maintained</link>
+        that the type of metadata collection the NSA carries out isn’t
+        intrusive because it doesn’t include the content. However, even
+        the list of people you’re in email correspondence with can be
+        very revealing. In May 2013, the Associated Press
+        <link xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="http://bigstory.ap.org/article/govt-obtains-wide-ap-phone-records-probe">reported</link>
+        that the Justice Department had seized email and phone records
+        of the AP newsroom as part of their
+        <link xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="http://www.vanityfair.com/news/2015/03/james-risen-anonymous-source-government-battle">investigation</link>
+        of government leaks. Even if the reporters had been using PGP,
+        this wouldn’t have encrypted the email addresses the reporters
+        were in contact with.
+      </para>
+      <para>
+        EFF
+        <link xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="https://www.eff.org/deeplinks/2013/06/why-metadata-matters">lists</link>
+        the numerous ways metadata can reveal more about someone than
+        even the content of the calls. This is corroborated by former
+        General Counsel of the National Security Agency Stewart Baker,
+        who
+        <link xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="http://www.rt.com/usa/158460-cia-director-metadata-kill-people/">said</link>
+        that <quote>Metadata absolutely tells you everything about
+        somebody’s life. If you have enough metadata, you don’t really
+        need content.</quote> Chillingly, former NSA director Michael
+        Hayden has publicly
+        <link xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="http://www.rt.com/usa/158460-cia-director-metadata-kill-people/">asserted</link>
+        that <quote>We kill people based on metadata.</quote>
+      </para>
+      <para>
+        Many PGP users mitigate this metadata leakage by using
+        purposefully unspecific email subject lines, such as
+        <quote>Summer 2015</quote> or <quote>cat pics,</quote> or
+        leaving the field blank.
+      </para>
+      <para>
+        PGP also doesn’t automatically guarantee anonymity. If I send a
+        PGP-encrypted email from
+        <literal>tommy.collison@gmail.com</literal>, it isn’t hard to
+        tell who the owner of the email address is, even though the
+        content of the email is encrypted. For added security, combine
+        PGP with a pseudonymous email account.
+      </para>
+      <para>
+        There are two other steps you can take to decrease the amount of
+        metadata leaked when using PGP email encryption. The first is
+        <link xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="https://trac.torproject.org/projects/tor/wiki/torbirdy">TorBirdy</link>,
+        an extension for Thunderbird that routes the app’s traffic
+        through the Tor network, enhancing your privacy. It’s an
+        involved process, but worth a look if you’re comfortable with
+        advanced settings.
+      </para>
+      <para>
+        The second is using <literal>--hidden-recipient</literal> as a
+        modifier to the <literal>gpg</literal> command when using GPG on
+        the command-line, or as a configuration option. When the
+        metadata of the subsequent encrypted file is
+        <link xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="http://tech.michaelaltfield.net/2013/10/19/analyzing-pgp-content/">analyzed</link>,
+        the key ID of the recipient reads
+        <emphasis role="strong">0x00000000</emphasis>. (Encrypted emails
+        usually have the real key ID attached, such as
+        <emphasis role="strong">0x97604F9D</emphasis>.)
+      </para>
+    </section>
+    <section xml:id="verifying-software"><info><title>Verifying Software</title></info>
+      
+      <para>
+        Another use of PGP is to verify the integrity of software. To
+        understand what I mean, consider the question: when you go to
+        download a piece of software (the Tor Browser, for example), how
+        do you know that what you’re downloading is the same as what the
+        developers created? How do you know that you didn’t download a
+        fake version? This could happen accidentally or maliciously.
+      </para>
+      <para>
+        One answer is to check the signature of the software.
+      </para>
+      <para>
+        This is a file typically ending in .sig or .asc which is
+        distributed along with the piece of software you want to
+        download. Using the GPG tools installed on your computer, you
+        can determine whether the file you downloaded is the same as the
+        one the developers intended for you to receive.
+      </para>
+      <para>
+        For this example, let’s verify the signature of Tails, the
+        operating system used by Greenwald, Poitras and Snowden which I
+        go into detail about in a later chapter.
+      </para>
+      <para>
+        To verify a signature, you need to import the GPG public key of
+        the Tails developers. To do this, download the Tails signing key
+        from the
+        <link xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="https://tails.boum.org/download/index.en.html">Tails
+        website</link>:
+      </para>
+      <figure><info><title>Downloading the Tails signing key.</title></info>
+        
+        <mediaobject>
+          <imageobject>
+            <imagedata fileref="images/tails_signing_key.png"/>
+          </imageobject>
+          <textobject><phrase>Downloading the Tails signing
+          key.</phrase></textobject>
+        </mediaobject>
+      </figure>
+      <para>
+        This will download the .key file onto your hard-drive. From
+        there, you just need to drag and drop (or click
+        <emphasis role="strong">File &gt; Import</emphasis> in the GPG
+        Keychain application):
+      </para>
+      <figure><info><title>Importing the Tails signing key into our GPG
+        keychain.</title></info>
+        
+        <mediaobject>
+          <imageobject>
+            <imagedata fileref="images/tails_import.png"/>
+          </imageobject>
+          <textobject><phrase>Importing the Tails signing key into our
+          GPG keychain.</phrase></textobject>
+        </mediaobject>
+      </figure>
+      <para>
+        From here, follow the advice on the
+        <link xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="https://tails.boum.org/download/index.en.html">Tails
+        installation page</link> on using the command line to verify
+        the signature.
+      </para>
+      <figure><info><title>Verifying signature of the Tails download.</title></info>
+        
+        <mediaobject>
+          <imageobject>
+            <imagedata fileref="images/tails_verification.png"/>
+          </imageobject>
+          <textobject><phrase>Verifying signature of the Tails
+          download.</phrase></textobject>
+        </mediaobject>
+      </figure>
+      <para>
+        Here, we can see my command line reads <quote>Good
+        signature,</quote> which means the software I downloaded was
+        what the developers intended me to get. (In this example, I
+        haven’t verified the Tails signing key, which you should — check
+        out the Tails
+        <link xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="https://tails.boum.org/doc/get/trusting_tails_signing_key/index.en.html">website</link>
+        to learn how to do this.)
+      </para>
+      <para>
+        In general, software websites should provide the signature for
+        you to check, but not all do. Both
+        <link xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="https://www.torproject.org/docs/verifying-signatures.html.en">Tor</link>
+        and
+        <link xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="https://tails.boum.org/download/index.en.html">Tails</link>
+        give information on how to verify a signature.
+      </para>
+      <para>
+        An easier method of verification involves checksums. This is a
+        string or <quote>hash</quote> of between 32 and 64 characters
+        which are unique to the piece of software you want to download.
+        The string is shown in two places, on your computer and on the
+        website where you download the software from. If the strings are
+        the same, we can say with some degree of certainty that the file
+        we downloaded is the one the developer intended us to get.
+      </para>
+    </section>
+  </section>
+  <section xml:id="tails-the-amnesic-incognito-live-system"><info><title>Tails: The Amnesic Incognito Live System</title></info>
+    
+    <blockquote>
+      <para>
+        <quote>[Tails] has been an essential tool for reporting the NSA
+        story. It is an all-in-one secure digital communication system
+        (GPG email, OTR chat, Tor web browser, encrypted storage) that
+        is small enough to swallow.</quote>
+      </para>
+      <para>
+        — Laura Poitras, Oscar-winning documentary filmmaker and board
+        member with Freedom of the Press Foundation.
+      </para>
+    </blockquote>
+    <para>
+      As mentioned above, the Tor network is the best choice today for
+      secure web browsing: it obscures your location, prevents
+      third-party tracking, and you can create a new browsing identity
+      quickly and easily. What if there was an entire operating system
+      designed with these principles in mind?
+    </para>
+    <para>
+      That’s the thinking behind the Tails system. PGP and OTR are
+      totally undermined if an attacker has physically compromised your
+      machine and, say, installed a keylogger to capture all your
+      logins, passphrases, and other sensitive data.
+    </para>
+    <para>
+      Tails was designed to be an entire operating system comprised
+      solely of <quote>software you can trust,</quote> meaning that you
+      don’t have to rely on other closed-source software. It also has
+      features to prevent tracking, such as wiping itself clean every
+      time you power down.
+    </para>
+    <figure><info><title>The Tails operating system.</title></info>
+      
+      <mediaobject>
+        <imageobject>
+          <imagedata fileref="images/tails_desktop.png"/>
+        </imageobject>
+        <textobject><phrase>The Tails operating
+        system.</phrase></textobject>
+      </mediaobject>
+    </figure>
+    <blockquote>
+      <para>
+        Tails is a live system that aims at preserving your privacy and
+        anonymity. It helps you to use the Internet anonymously almost
+        anywhere you go and on any computer but leave no trace using
+        unless you ask it explicitly.
+      </para>
+      <para>
+        It is a complete operating-system designed to be used from a DVD
+        or a USB stick independently of the computer’s original
+        operating system. It is Free Software and based on Debian
+        GNU/Linux.
+      </para>
+      <para>
+        Tails comes with several built-in applications pre-configured
+        with security in mind: web browser, instant messaging client,
+        email client, office suite, image and sound editor, etc.
+      </para>
+      <para>
+        <quote>About.</quote>
+        <link xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="https://tails.boum.org/about/index.en.html">tails.boum.org</link>.
+      </para>
+    </blockquote>
+    <para>
+      In some ways, Tails is more difficult to use compared to a regular
+      operating system. It’s slow, and doesn’t have all the software you
+      might need. But some of these shortcomings are by design: such
+      limitations make it a lot harder to mess up their endpoint
+      security. If you’re in the position where you think an
+      intelligence agency, or another potential attacker, may want to
+      target you or your colleagues (the journalist-whistleblower
+      relationship comes to mind), it’s the best tool available.
+    </para>
+    <para>
+      Since Tails isn’t a practical choice for daily computer use,
+      setting up Tor, PGP, and OTR encryption on your main operating
+      system is also a good idea.
+    </para>
+    <para>
+      Every time you boot Tails you start from a clean state. It’s
+      <quote>amnesic</quote> — anything and everything you do gets
+      erased on shutdown, and it doesn’t leave a trace on the computer
+      you used it on. It’s designed this way so that if you create a
+      trail of activity or get infected with malware while using Tails,
+      it’s almost certainly gone the next time you boot up.
+    </para>
+    <para>
+      (While Tails prevents many endpoint attacks, like all security
+      tools, it is not 100% impervious to attacks. Recently, researchers
+      have showed how attackers can implant malware in the BIOS — or the
+      brains — of a computer, which may allow Tails to be
+      <link xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="http://www.wired.com/2015/03/researchers-uncover-way-hack-bios-undermine-secure-operating-systems/">compromised</link>.
+      However, it’s unclear how widespread this attack is or if it’s
+      particularly effective in the wild.)
+    </para>
+    <para>
+      It’s a good idea to install Tails on a fresh storage device
+      (either a DVD or a USB stick) to ensure everything works as it
+      should. There are two ways of installing Tails:
+    </para>
+    <itemizedlist>
+      <listitem>
+        <orderedlist numeration="arabic" spacing="compact" inheritnum="ignore" continuation="restarts">
+          <listitem>
+            <para>
+              Using the command line and the Tails .iso file to create a
+              Tails instance on a removable storage device. For
+              instructions,
+              <link xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="https://tails.boum.org/download/index.en.html">click
+              here</link>.
+            </para>
+          </listitem>
+        </orderedlist>
+      </listitem>
+      <listitem>
+        <orderedlist numeration="arabic" spacing="compact" inheritnum="ignore" continuation="restarts">
+          <listitem override="2">
+            <para>
+              Using an existing Tails installation and cloning the
+              operating system onto a second storage device. For
+              instructions,
+              <link xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="https://tails.boum.org/doc/first_steps/installation/index.en.html">click
+              here</link>.
+            </para>
+          </listitem>
+        </orderedlist>
+      </listitem>
+    </itemizedlist>
+    <para>
+      Once you get past this tricky install, Tails is currently the gold
+      standard for anonymously using a computer, particularly when
+      coupled with PGP-encrypted email.
+    </para>
+    <para>
+      <emphasis role="strong">The email application bundled with Tails
+      is called Claws Mail. Currently, there is a
+      <link xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="https://tails.boum.org/support/known_issues/index.en.html#index21h2">serious
+      vulnerability</link> in Claws Mail that can leak the plaintext of
+      your emails to the email server. If you decide to use Claws Mail,
+      we strongly recommend implementing one of the
+      <link xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="https://tails.boum.org/security/claws_mail_leaks_plaintext_to_imap/index.en.html#index1h1">official
+      workarounds</link> until the issue is fixed in Tails.</emphasis>
+    </para>
+    <section xml:id="persistence-how-to-save-your-work-between-sessions"><info><title>Persistence: How to save your work between sessions</title></info>
+      
+      <para>
+        Journalists rely on their notes, and so the idea of an operating
+        system that saves nothing between sessions may sound
+        sub-optimal. But Tails has the optional feature of persistence —
+        saving files in an encrypted volume which are accessible across
+        separate sessions. This is useful for files you’re working on,
+        and encryption keys you use with Tails. (It’s generally
+        inadvisable to move keys off a Tails machine — you should keep
+        them compartmentalized and away from your regular computer
+        operating system.)
+      </para>
+      <para>
+        If you’re going to be using the persistence feature, you have to
+        install Tails on a USB stick or an SD card, not a DVD. Also, you
+        have to clone Tails from an existing installation rather than
+        manually flashing Tails onto a USB from a computer.
+      </para>
+      <para>
+        The Tails
+        <link xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="https://tails.boum.org/doc/first_steps/persistence/configure/index.en.html">installation
+        guide</link> has instructions on configuring persistence.
+      </para>
+    </section>
+    <section xml:id="setting-up-secure-computers"><info><title>Setting Up Secure Computers</title></info>
+      
+      <blockquote>
+        <para>
+          <quote>Tails have been vital to my ability to work securely on
+          the NSA story. The more I’ve come to learn about
+          communications security, the more central Tails has become to
+          my approach.</quote>
+        </para>
+        <para>
+          — Glenn Greenwald, journalist and Freedom of the Press
+          Foundation board-member.
+        </para>
+      </blockquote>
+      <para>
+        When it comes to privacy and anonymity, Tails is currently one
+        of the best operating systems out there, so it’s a good tool to
+        have in your journalistic arsenal. The benefits of using it
+        compound if your colleagues are using it too. Here’s how to get
+        several people up and running on Tails.
+      </para>
+      <orderedlist numeration="arabic" spacing="compact" inheritnum="ignore" continuation="restarts">
+        <listitem>
+<literallayout class="normal">Download and burn a Tails DVD. Boot to Tails and create Tails USB sticks for each person.
+</literallayout>
+        </listitem>
+        <listitem>
+<literallayout class="normal">When everyone has a Tails USB stick, each person should boot to Tails on her own laptop and configure a persistence volume on her USB stick. Since this volume is encrypted, each person should come up with her own secure passphrase that she will need to enter each time she boots to Tails. Everyone should reboot their laptops into Tails again and this time mount the persistent volume.
+</literallayout>
+        </listitem>
+        <listitem>
+<literallayout class="normal">Each person should create a new pseudonymous Jabber account. (Refer back to <link xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="https://firstlook.org/theintercept/2015/07/14/communicating-secret-watched/">The Intercept</link> for a how-to.) Since Tails makes all Internet traffic go over Tor, this is effectively making an anonymous Jabber account.
+</literallayout>
+        </listitem>
+        <listitem>
+<literallayout class="normal">Each person should open Pidgin and configure it to use their new Jabber account and create a new OTR key. Everyone should add one another to their buddy lists and start OTR sessions with eachother. Since everyone is in the same room, this is the perfect time to compare fingerprints and verify the identity of all parties so that you’ll able to communicate securely over the Internet in the future.
+</literallayout>
+        </listitem>
+        <listitem>
+<literallayout class="normal">Each person should create a new pseudonymous email address as well. Some email providers, such as Gmail, make it very difficult to create new accounts while using Tor and staying anonymous, so find another email provider to use instead. Make sure the email provider supports IMAP (so you can use a desktop email client) over SSL/TLS (so your email client uses encryption when communicating with the email server). If everyone chooses the same email provider, sending emails between accounts should never leave that email server, which reduces the metadata about your email usage available to anyone conducting dragnet surveillance of the Internet.
+</literallayout>
+        </listitem>
+        <listitem>
+          <para>
+            Each person should generate a new PGP key for their email
+            address. Like with disk encryption, it’s important to choose
+            a strong passphrase when generating a PGP key.
+          </para>
+        </listitem>
+      </orderedlist>
+    </section>
+    <section xml:id="potential-pitfalls"><info><title>Potential Pitfalls</title></info>
+      
+      <para>
+        If a malicious attacker manages to modify or compromise your
+        Tails USB stick, the security of the operating system can be
+        compromised. For this reason, you should keep your install on
+        you at all times and, if you suspect it’s been compromised,
+        create a new installation on a fresh device.
+      </para>
+      <para>
+        There are two ways of mitigating such a problem, making it less
+        likely your Tails installation will be compromised in some way:
+      </para>
+      <itemizedlist>
+        <listitem>
+          <orderedlist numeration="arabic" spacing="compact" inheritnum="ignore" continuation="restarts">
+            <listitem>
+              <para>
+                Only transfer the files and tools you need for the
+                specific tasks you’re trying to accomplish in Tails.
+              </para>
+            </listitem>
+          </orderedlist>
+        </listitem>
+        <listitem>
+          <orderedlist numeration="arabic" spacing="compact" inheritnum="ignore" continuation="restarts">
+            <listitem override="2">
+              <para>
+                Create compartmentalized accounts and identities (email
+                accounts, chat accounts, GPG/OTR keys, etc.) that are
+                totally separated from your established digital
+                presence.
+              </para>
+            </listitem>
+          </orderedlist>
+        </listitem>
+      </itemizedlist>
+      <para>
+        This second point is important, and separating your contextual
+        identities is a way to beef up Tail’s built-in technical
+        security features. Tails works best when it’s supplemented by
+        behavioral changes on the user’s part in order to stay
+        anonymous. For instance, you should use different Tails sessions
+        for different tasks. (A session refers to a time spent using
+        Tails, and it ends when you shut down and Tails resets. If you
+        use Tails over two days and shut down in between, you’re said to
+        have two sessions.)
+      </para>
+      <para>
+        Also, if you have an anonymous email address you use to
+        communicate with a source, it’s inadvisable to also log into
+        your personal or work email accounts.
+      </para>
+    </section>
+  </section>
+  <section xml:id="a-fighting-chance"><info><title>A Fighting Chance</title></info>
+    
+    <para>
+      Two years after he blew the whistle on the NSA, Edward Snowden
+      wrote an op-ed in The New York Times.
+    </para>
+    <blockquote>
+      <para>
+        Spymasters in Australia, Canada and France have exploited recent
+        tragedies to seek intrusive new powers despite evidence such
+        programs would not have prevented attacks. Prime Minister David
+        Cameron of Britain recently mused, <quote>Do we want to allow a
+        means of communication between people which we cannot
+        read?</quote> […]
+      </para>
+      <para>
+        At the turning of the millennium, few imagined that citizens of
+        developed democracies would soon be required to defend the
+        concept of an open society against their own leaders.
+      </para>
+      <para>
+        Yet the balance of power is beginning to shift. We are
+        witnessing the emergence of a post-terror generation, one that
+        rejects a worldview defined by a singular tragedy.
+      </para>
+      <para>
+        —
+        <link xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="http://www.nytimes.com/2015/06/05/opinion/edward-snowden-the-world-says-no-to-surveillance.html"><quote>Edward
+        Snowden: The World Says No to Surveillance.</quote></link> The
+        New York Times.
+      </para>
+    </blockquote>
+    <para>
+      Protecting your privacy in the age of ubiquitous NSA surveillance
+      is incredibly complex. Gaining a basic understanding of the
+      concepts involved, much less actually using the software that’s
+      available, has an enormous learning curve. But it is worth it. The
+      conversation around surveillance is changing. Users around the
+      world are rallying against passive surveillance and legal
+      challenges against the U.S. surveillance apparatus are growing in
+      number.
+    </para>
+    <para>
+      Increasingly, we’re living our lives online and creating long data
+      trails which can be accessed and mined for information. When there
+      is so much data about us online, it becomes exponentially harder
+      to keep our personal information to ourselves. The challenge of
+      the cypherpunk movement is to make secure and verified end-to-end
+      encryption accessible to everyone, and turned on by default.
+    </para>
+    <para>
+      But even with
+      <link xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="http://www.guardian.co.uk/uk/2013/jun/21/gchq-cables-secret-world-communications-nsa">direct
+      access</link> to all the data traveling at the speed of light
+      through the Internet’s backbone fiber-optic cables, even with
+      <link xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="http://www.washingtonpost.com/wp-srv/special/politics/prism-collection-documents/">cooperation</link>
+      of the major United States tech companies (which are extremely
+      difficult for people to boycott), the largest, most powerful and
+      best-funded surveillance apparatus that humanity has ever seen can
+      not invade our privacy without resistance.
+    </para>
+  </section>
+</section>
+</article>
